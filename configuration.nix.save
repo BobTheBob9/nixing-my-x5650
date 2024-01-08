@@ -48,34 +48,25 @@
     console.keyMap = "uk";
 
     environment.systemPackages = [ 
-        pkgs.neofetch
-        pkgs.neovim
+	pkgs.neofetch 
+	pkgs.neovim
     ];
 
     services.static-web-server = {
-        enable = true;
-        listen = "[::]:80";
-        root = "/web";
-        configuration.general.directory-listing = true;
+	enable = true;
+	listen = "[::]:80";
+	root = "/web";
+	configuration.general.directory-listing = true;
     };
 
     services.minecraft-server = {
-        enable = true;
-        eula = true;
-        openFirewall = true;
-        declarative = true;
-        serverProperties.server-port = 25565;
-        serverProperties.online-mode = false;
+	enable = true;
+	eula = true;
+	openFirewall = true;
+	declarative = true;
+	serverProperties.server-port = 25565;
 
-        package = let
-            version = "b1.7.3";
-            url = "http://files.betacraft.uk/server-archive/beta/b1.7.3.jar";
-            sha256 = "0kdsg579ar793bqwz8a249sm6gas624rqdhmiw1hp9i599z14fh3";
-        in ( pkgs.minecraftServers.vanilla-1-2.overrideAttrs ( old: rec {
-            inherit version;
-            name = "minecraft-server_${version}";
-            src = pkgs.fetchurl { inherit url sha256; };
-        }));
+	axkagw = lwt
     };
 
     system.stateVersion = "23.05";
